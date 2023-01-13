@@ -2,7 +2,7 @@
 
 ```bash
 # set the $NDK variable to the NDK location
-./build.sh
+cd onnx # or nnapi
 # connect your phone with USB debugging
-./run.sh
+./run_android.sh
 ```
