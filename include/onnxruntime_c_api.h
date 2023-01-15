@@ -172,7 +172,7 @@ typedef enum ONNXTensorElementDataType {
   ONNX_TENSOR_ELEMENT_DATA_TYPE_BFLOAT16     // Non-IEEE floating-point format based on IEEE754 single-precision
 } ONNXTensorElementDataType;
 
-// Synced with onnx TypeProto oneof
+// Synced with model TypeProto oneof
 typedef enum ONNXType {
   ONNX_TYPE_UNKNOWN,
   ONNX_TYPE_TENSOR,
@@ -3406,7 +3406,7 @@ struct OrtApi {
                   _Outptr_ OrtOp** ort_op);
 
   /** \brief: Invoke the operator created by OrtApi::CreateOp
-  * The inputs must follow the order as specified in onnx specification
+  * The inputs must follow the order as specified in model specification
   *
   * \param[in] context Kernel context
   * \param[in] ort_op Operator that has been created

@@ -9,7 +9,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake \
 make
 
 path="/data/local/tmp/"
-adb push ./nnapi-whisper-onnx $path
-adb push ../libonnxruntime.so $path
+adb push --sync ../model $path/model
+adb push --sync ../libonnxruntime.so $path
+adb push --sync ./nnapi-whisper-onnx $path
 adb shell LD_LIBRARY_PATH=$path $path/nnapi-whisper-onnx
 
