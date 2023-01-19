@@ -40,5 +40,17 @@ int main(int argc, char *argv[]) {
     std::cout << duration.count() << std::endl;
 
 
+    /* encoder */
+    Ort::Session encoder_session(env, "/data/local/tmp/model/encoder.onnx", so);
+    std::vector<float> features(features_shape[0] * features_shape[1] * features_shape[2]);
+
+    auto features_tensor = Ort::Value::CreateTensor<float>(memory_info, features.data(), features.size(), features_shape, 3);
+
+    start = high_resolution_clock::now();
+    encoder_session.Run(run_options, input_names, &spectogram_tensor, 1, output_names, &features_tensor, 1);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    std::cout << duration.count() << std::endl;
+
     std::cout << "Finished " << features[0] << std::endl;
 }
